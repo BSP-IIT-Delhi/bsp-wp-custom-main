@@ -1,22 +1,99 @@
-<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"20px","bottom":"20px"}}},"backgroundColor":"base","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignwide has-base-background-color has-background"
-	style="padding-top:20px;padding-bottom:20px">
-	<!-- wp:group {"align":"wide","layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"}} -->
-	<div class="wp-block-group alignwide">
-		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"},"layout":{"selfStretch":"fit","flexSize":null}},"layout":{"type":"flex"}} -->
-		<div class="wp-block-group">
-			<!-- wp:site-logo {"width":60 } /-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<style>
 
-			<!-- wp:group {"style":{"spacing":{"blockGap":"0px"}}} -->
-			<div class="wp-block-group">
-				<!-- wp:site-title {"level":0} /-->
-			</div>
-			<!-- /wp:group -->
-		</div>
-		<!-- /wp:group -->
+	.header-image{
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
 
-		<!-- wp:navigation {"layout":{"type":"flex","justifyContent":"right","orientation":"horizontal"},"style":{"spacing":{"margin":{"top":"0"},"blockGap":"var:preset|spacing|20"},"layout":{"selfStretch":"fit","flexSize":null}}} /-->
-	</div>
-	<!-- /wp:group -->
+	.band{
+		background-color: #923CFF;
+		height: 3rem;
+		width: 100%;
+		margin: 0;
+	}
+
+	.Nav{
+		display: flex;
+		justify-content: space-around;
+		padding-top: 0.5rem;
+		width: 100%;
+	}
+
+	.Nav a{
+		text-decoration: none;
+		font-weight: 500;
+		font-size: 24px;
+		color: black;
+	}
+	.Nav a:hover{
+		cursor: pointer;
+	}
+	
+</style>
+
+<div class="top-content"  >
+<img src="wp-content/themes/bsp-wp-custom-main/assets/images/Header.svg" class="header-image"  />
+
+	<div  class="band"></div>
 </div>
-<!-- /wp:group -->
+
+<div class="Nav"    >
+	
+	<a href="#">Magazines</a>
+	<a>Magazines</a>
+	<a >Magazines</a>
+	<a >Magazines</a>
+	<a >Magazines</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+<script>
+	const nav = document.querySelector('.Nav');
+	const divHeight = document.querySelector('.top-content').offsetHeight;
+
+	window.addEventListener('scroll', () => {
+		const scrollPos = window.scrollY;
+		let opacity = scrollPos/divHeight;
+
+		if(scrollPos>=divHeight/2){
+			if(!nav.contains(document.querySelector('.logo'))){
+				const logo = document.createElement('img');
+				logo.src = 'wp-content/themes/bsp-wp-custom-main/assets/images/BspLogo.svg';
+				logo.className = 'logo';
+			
+				logo.style = 'text-decoration: none; font-weight: 500; font-size: 24px; opacity: 0; transition: opacity 0.3s ease-in;';
+				nav.prepend(logo);
+
+			}
+			setTimeout(() => {
+				document.querySelector('.logo').style.opacity = opacity;
+			}, 100);
+		}
+		else{
+			if(nav.contains(document.querySelector('.logo'))){
+				document.querySelector('.logo').remove();
+			}
+		}
+
+		
+		//console.log(divHeight, scrollPos);
+
+		if(scrollPos>=divHeight){
+			nav.style = 'position: fixed; top:30px; display: flex; justify-content: space-around; width: 100%; background-color: white; padding-top:8px; padding-bottom: 15px';
+		}
+		else{
+			nav.style = 'display: flex; justify-content: space-around; padding-top: 8px; width: 100%;';
+		}
+		
+		
+
+
+
+	})
+
+</script>
+	
